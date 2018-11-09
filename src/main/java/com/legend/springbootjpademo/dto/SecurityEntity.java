@@ -1,18 +1,11 @@
-package com.yanggaochao.springboot.learn.springbootjpalearn.security.domain.dto;
+package com.legend.springbootjpademo.dto;
 
+import com.legend.springbootjpademo.domain.User;
 
-import com.yanggaochao.springboot.learn.springbootjpalearn.security.domain.dao.UserDO;
-
-/**
- * 用户登录业务对象类
- *
- * @author 杨高超
- * @since 2018-03-12
- */
 public class SecurityEntity {
     private String token;
     private Long exipre;
-    private UserDO user;
+    private User user;
 
     public String getToken() {
         return token;
@@ -30,11 +23,12 @@ public class SecurityEntity {
         this.exipre = exipre;
     }
 
-    public UserDO getUser() {
+
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

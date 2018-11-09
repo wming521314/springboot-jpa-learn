@@ -1,25 +1,21 @@
-package com.yanggaochao.springboot.learn.springbootjpalearn.security.domain.dao;
+package com.legend.springbootjpademo.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * 角色实体类
- *
- * @author 杨高超
- * @since 2018-03-12
- */
 @Entity
-@Table(name = "AUTH_ROLE")
-public class RoleDO {
+@Table(name = "AUTH_USER")
+public class User {
     @Id
     private Long id;
     @Column(length = 32)
     private String name;
+    @Column(length = 32)
+    private String account;
     @Column(length = 64)
-    private String note;
+    private String pwd;
 
     public Long getId() {
         return id;
@@ -37,11 +33,19 @@ public class RoleDO {
         this.name = name;
     }
 
-    public String getNote() {
-        return note;
+    public String getAccount() {
+        return account;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 }

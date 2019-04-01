@@ -7,25 +7,14 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User  implements Serializable {
+@Table(name = "auth")
+public class Auth  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "role_id")
-	private Long roleId;
-
-	private String name;
-
-	private Integer sex;
-
-	private Integer age;
-
-	private String comment;
-
-	private String password;
+	private String description;
 
 	@Column(name = "record_status")
 	private Integer recordStatus;

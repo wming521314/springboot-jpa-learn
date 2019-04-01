@@ -1,41 +1,32 @@
 package com.legend.springbootjpademo.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import lombok.Data;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Data
 @Entity
-@Table(name = "AUTH_ROLE")
-public class Role {
-    @Id
-    private Long id;
-    @Column(length = 32)
-    private String name;
-    @Column(length = 64)
-    private String note;
+@Table(name = "role")
+public class Role  implements Serializable {
 
-    public Long getId() {
-        return id;
-    }
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	@Column(name = "role_name")
+	private String roleName;
 
-    public String getName() {
-        return name;
-    }
+	@Column(name = "auth_id_list")
+	private String authIdList;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Column(name = "record_status")
+	private Integer recordStatus;
 
-    public String getNote() {
-        return note;
-    }
+	@Column(name = "create_time")
+	private java.sql.Timestamp createTime;
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+	@Column(name = "update_time")
+	private java.sql.Timestamp updateTime;
+
 }

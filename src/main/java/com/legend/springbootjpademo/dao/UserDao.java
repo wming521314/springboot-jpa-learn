@@ -2,17 +2,21 @@ package com.legend.springbootjpademo.dao;
 
 
 import com.legend.springbootjpademo.domain.User;
+import com.legend.springbootjpademo.dto.DtoUserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface UserDao extends JpaRepository<User, Long> {
-    User findByAccount(String account);
+    User findByName(String name);
 
-    List<User> findByIdGreaterThan(Long id);
+    List<User> findByRoleIdAndRecordStatus(Long roleId, Integer recordStatus);
 
-    @Query("SELECT U FROM User U ,RoleUser RU WHERE U.id = RU.userId AND RU.roleId = :roleId")
-    List<User> findUsersByRole(@Param("roleId") Long roleId);
+    @Query("SELECT new com.legend.springbootjpademo.dto.DtoUserRole(U.id, U.name, R.id, R.name) from User U, Role R where U.id=:userId and U.roleId=R.id")
+    DtoUserRole getUserRole (Long userId);
+
+    @Query(nativeQuery = true, value="select from user u left join role r on u.role_id=r.id where u.id=:#{userId}")
+    Object getUserRoleNative (Long userId);
+
 }

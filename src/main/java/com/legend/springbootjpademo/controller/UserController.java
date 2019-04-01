@@ -2,11 +2,12 @@ package com.legend.springbootjpademo.controller;
 
 import com.legend.springbootjpademo.dao.UserDao;
 import com.legend.springbootjpademo.domain.User;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 
 /**
  * @Title UserController
@@ -17,7 +18,7 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping(value = "/api/user")
+@RequestMapping(value="/api/user")
 public class UserController {
 
     @Autowired
@@ -25,6 +26,7 @@ public class UserController {
 
     @RequestMapping(value="/list",method= RequestMethod.GET)
     public List<User> list(){
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching().withMatcher("categoryName",ExampleMatcher.GenericPropertyMatchers.endsWith());
         return userDao.findAll();
     }
 
